@@ -52,7 +52,7 @@ void Level::loadLevel(string fileName, Player & player)
 void Level::printLevel()
 {
 	// Clear screen before loading a level.
-	system("cls"); // Use clear instead when using Unix based system like some Linux distro or MacOS. 
+	cout << string(50, '\n'); // Use clear instead when using Unix based system like some Linux distro or MacOS. 
 
 	for (int i = 0; i < _levelData.size(); i++)
 	{
@@ -90,7 +90,6 @@ void Level::tryMovePlayer(char dir, Player & player)
 		movePlayer(getTile(playerX + 1, playerY), playerX + 1, playerY, player);
 		break;
 	default:
-		cout << "\nINVALID INPUT!\n";
 		system("PAUSE");
 		break;
 	}
@@ -107,10 +106,6 @@ void Level::movePlayer(char tile, int x, int y, Player & player)
 	player.getPosition(pX, pY);
 	switch (tile)
 	{
-	case '#':
-		cout << "\nYou ran into a wall!\n";
-		system("PAUSE");
-		break;
 	case '.':
 		player.setPosition(x, y);
 		setTile(pX, pY, '.');
