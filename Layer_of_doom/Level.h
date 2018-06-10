@@ -12,7 +12,10 @@ public:
 	Level();
 	void loadLevel(string fileName, Player &player);
 	void printLevel();
-	void tryMovePlayer(char dir);
+	void setTile(int x, int y, char tile);
+	void tryMovePlayer(char dir, Player &player);
+	char getTile(int x, int y);
+	void movePlayer(char tile, int x, int y, Player & player);
 	~Level();
 };
 

@@ -61,25 +61,64 @@ void Level::printLevel()
 	cout << endl;
 }
 
-void Level::tryMovePlayer(char dir)
+void Level::setTile(int x, int y, char tile)
 {
+	_levelData[y][x] = tile;
+}
+
+void Level::tryMovePlayer(char dir, Player & player)
+{
+	char moveTile;
+	int playerX, playerY; // X and Y coordinates of the Player
+	player.getPosition(playerX, playerY);
 	switch (dir)
 	{
 	case 'w': // up
 	case 'W':
+		movePlayer(getTile(playerX, playerY - 1), playerX, playerY - 1, player);
 		break;
 	case 's': // down
 	case 'S':
+		movePlayer(getTile(playerX, playerY + 1), playerX, playerY + 1, player);
 		break;
 	case 'a': // left
 	case 'A':
+		movePlayer(getTile(playerX - 1, playerY), playerX - 1, playerY, player);
 		break;
 	case 'd': // right
 	case 'D':
+		movePlayer(getTile(playerX + 1, playerY), playerX + 1, playerY, player);
 		break;
 	default:
 		cout << "\nINVALID INPUT!\n";
 		system("PAUSE");
+		break;
+	}
+}
+
+char Level::getTile(int x, int y)
+{
+	return _levelData[y][x];
+}
+
+void Level::movePlayer(char tile, int x, int y, Player & player)
+{
+	int pX, pY;
+	player.getPosition(pX, pY);
+	switch (tile)
+	{
+	case '#':
+		cout << "\nYou ran into a wall!\n";
+		system("PAUSE");
+		break;
+	case '.':
+		player.setPosition(x, y);
+		setTile(pX, pY, '.');
+		setTile(x, y, '@');
+		break;
+	case 'M':
+		break;
+	default:
 		break;
 	}
 }

@@ -12,7 +12,7 @@ void GameSystem::_playerMovement()
 	cout << "\nEnter direction you want to move in: \n";
 	dir = _getch();
 
-	_level.tryMovePlayer(dir);
+	_level.tryMovePlayer(dir, _player);
 }
 
 GameSystem::GameSystem(string levelFile)
