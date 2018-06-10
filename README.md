@@ -1,7 +1,6 @@
 #ASCII Roguelike
 
-I will attempt to make an ASCII [roguelike] using C++ and no graphics. 
-[roguelike]: https://en.wikipedia.org/wiki/Roguelike
+I will attempt to make an ASCII [roguelike](https://en.wikipedia.org/wiki/Roguelike) using C++ and no graphics. 
 
 ##Objectives
 1. Load the ASCII levels from a level file, e.g. level1.txt, level2.txt, etc.
