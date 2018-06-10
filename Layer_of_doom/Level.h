@@ -10,6 +10,7 @@ class Level
 public:
 	Level();
 	void loadLevel(string fileName);
+	void printLevel();
 	~Level();
 };
 

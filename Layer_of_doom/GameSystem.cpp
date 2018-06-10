@@ -7,9 +7,12 @@ GameSystem::GameSystem()
 {
 }
 
-GameSystem::GameSystem(string level)
+GameSystem::GameSystem(string levelFile)
 {
+	_level.loadLevel(levelFile);
+	_level.printLevel();
 
+	system("PAUSE");
 }
 
 void GameSystem::logic()

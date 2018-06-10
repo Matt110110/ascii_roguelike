@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	GameSystem gameSystem;
+	GameSystem gameSystem("level1.txt");
 	gameSystem.logic();
 	// End of main
 	system("PAUSE");
