@@ -8,8 +8,8 @@ class GameSystem
 {
 	Player _player;
 	Level _level;
+	void _playerMovement();
 public:
-	GameSystem();
 	GameSystem(string levelFile);
 	void logic();
 	~GameSystem();
