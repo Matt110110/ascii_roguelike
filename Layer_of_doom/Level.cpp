@@ -1,5 +1,6 @@
 #include "Level.h"
 #include "Player.h"
+#include "Enemy.h"
 #include <iostream>
 #include <fstream>
 
@@ -39,8 +40,17 @@ void Level::loadLevel(string fileName, Player & player)
 
 			switch (tile)
 			{
-			case '@':
+			case '@': // Player
 				player.setPosition(j, i);
+				break;
+			case 'g': // Guard
+				_enemies.push_back(Enemy("Henchman", 'g', 1, 3, 1, 10, 1));
+				break;
+			case 'G': // Chief of guards
+				_enemies.push_back(Enemy("Chief", 'G', 10, 10, 20, 50, 1));
+				break;
+			case 'D': // Don
+				_enemies.push_back(Enemy("Don", 'D', 50, 50, 200, 100, 1));
 				break;
 			default:
 				break;
@@ -52,7 +62,7 @@ void Level::loadLevel(string fileName, Player & player)
 void Level::printLevel()
 {
 	// Clear screen before loading a level.
-	cout << string(50, '\n'); // Use clear instead when using Unix based system like some Linux distro or MacOS. 
+	system("cls"); // Use clear instead when using Unix based system like some Linux distro or MacOS. 
 
 	for (int i = 0; i < _levelData.size(); i++)
 	{
@@ -95,6 +105,21 @@ void Level::tryMovePlayer(char dir, Player & player)
 	}
 }
 
+void Level::battleEnemy(Player & player, int targetX, int targetY)
+{
+	int enemyX, enemyY, attackRoll;
+	for (int i = 0; i < _enemies.size(); i++)
+	{
+		_enemies[i].getPositionOfEnemy(enemyX, enemyY);
+		if (targetX == enemyX && targetY == enemyY)
+		{
+			// Let the battle begin
+			attackRoll = player.getPlayerAttack();
+			return;
+		}
+	}
+}
+
 char Level::getTile(int x, int y)
 {
 	return _levelData[y][x];
@@ -106,14 +131,15 @@ void Level::movePlayer(char tile, int x, int y, Player & player)
 	player.getPosition(pX, pY);
 	switch (tile)
 	{
-	case '.':
+	case '.': // This air
 		player.setPosition(x, y);
 		setTile(pX, pY, '.');
 		setTile(x, y, '@');
 		break;
-	case 'M':
+	case '#': // Wall
 		break;
-	default:
+	default: // Enemy
+		battleEnemy(player, pX, pY);
 		break;
 	}
 }

@@ -13,6 +13,7 @@ public:
 	void init(int level, int health, int attack, int defence, int experience);
 	void setPosition(int x, int y);
 	void getPosition(int &x, int &y);
+	int getPlayerAttack();
 	~Player();
 };
 

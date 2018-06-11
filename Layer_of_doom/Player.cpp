@@ -1,6 +1,6 @@
 #include "Player.h"
 
-
+using namespace std;
 
 Player::Player()
 {
@@ -27,6 +27,11 @@ void Player::getPosition(int & x, int & y)
 {
 	x = _x;
 	y = _y;
+}
+
+int Player::getPlayerAttack()
+{
+	return _attack;
 }
 
 
