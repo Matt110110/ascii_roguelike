@@ -124,6 +124,7 @@ void Level::battleEnemy(Player & player, int targetX, int targetY)
 				system("PAUSE");
 				player.addExp(attackresult);
 				setTile(targetX, targetY, '.');
+				printLevel();
 				return;
 			}
 			
@@ -133,11 +134,24 @@ void Level::battleEnemy(Player & player, int targetX, int targetY)
 			if (enemyX == targetX && enemyY == targetY)
 			{
 				attackRoll = _enemies[i].getEnemyAttack();
-
+				attackresult = player.takeDamage(attackRoll);
+				if (attackresult == 0)
+				{
+					cout << "\nEnemy attack was super effective! Run for your life.\n";
+				}
+				else
+				{
+					setTile(targetX, targetY, 'X');
+					printLevel();
+					cout << "\nYOU DIED!\n";
+					system("PAUSE");
+					return;
+				}
 			}
 			else
 			{
 				cout << endl << "Successfully dodged.\n";
+				player.addExp(5);
 			}
 			return;
 		}

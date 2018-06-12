@@ -7,6 +7,7 @@ using namespace std;
 
 void Enemy::_regenerateDefence(int defence)
 {
+	// The defence of the Enemy decreases by 20% after each reset. Otherwise there is no way to kill the Don.
 	_defence = (int)(defence - ((20 / 100)*defence));
 }
 

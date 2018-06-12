@@ -4,6 +4,12 @@
 
 using namespace std;
 
+void Player::_generageDef(int def)
+{
+	// Player defence does not decrease gradually because he is the main player and the game will become really hard.
+	_defence = def;
+}
+
 Player::Player()
 {
 	_x = 0;
@@ -51,8 +57,23 @@ void Player::addExp(int exp)
 	}
 }
 
-void Player::takeDamage(int attack)
+int Player::takeDamage(int attack)
 {
+	int originalDef = _defence;
+	int temp = attack;
+	attack -= _defence;
+	if (attack <= 0)
+	{
+		_defence -= temp;
+		return 0;
+	}
+	_health -= attack;
+	if (_health > 0)
+	{
+		return 0;
+	}
+	else
+		return 1;
 }
 
 

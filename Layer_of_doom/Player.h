@@ -1,13 +1,8 @@
 #pragma once
 class Player
 {
-	int _level;
-	int _health;
-	int _attack;
-	int _defence;
-	int _experience;
-	int _x;
-	int _y;
+	int _level, _health, _attack, _defence, _experience, _x, _y;
+	void _generageDef(int def);
 public:
 	Player();
 	void init(int level, int health, int attack, int defence, int experience);
@@ -15,7 +10,8 @@ public:
 	void getPosition(int &x, int &y);
 	int getPlayerAttack();
 	void addExp(int exp);
-	void takeDamage(int attack);
+	int takeDamage(int attack);
+
 	~Player();
 };
 
