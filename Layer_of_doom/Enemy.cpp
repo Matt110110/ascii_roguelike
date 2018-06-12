@@ -42,7 +42,7 @@ int Enemy::getEnemyAttack()
 }
 
 int Enemy::takeDamage(int attack)
-{
+{/*
 	int originalDef = _defence;
 	int temp = attack;
 	attack -= _defence;
@@ -59,7 +59,11 @@ int Enemy::takeDamage(int attack)
 	if (_hp > 0)
 	{
 		return 0;
-	}
+	}*/
+
+	_hp -= attack;
+	if (_hp > 0)
+		return 0;
 	return _expVal;
 }
 

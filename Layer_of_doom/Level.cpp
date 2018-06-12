@@ -46,12 +46,15 @@ void Level::loadLevel(string fileName, Player & player)
 				break;
 			case 'g': // Guard
 				_enemies.push_back(Enemy("Henchman", 'g', 1, 3, 1, 10, 1));
+				_enemies.back().setPositionOfEnemy(j, i);
 				break;
 			case 'G': // Chief of guards
 				_enemies.push_back(Enemy("Chief", 'G', 10, 10, 20, 50, 1));
+				_enemies.back().setPositionOfEnemy(j, i);
 				break;
 			case 'D': // Don
 				_enemies.push_back(Enemy("Don", 'D', 50, 50, 200, 100, 1));
+				_enemies.back().setPositionOfEnemy(j, i);
 				break;
 			default:
 				break;
@@ -145,7 +148,7 @@ void Level::battleEnemy(Player & player, int targetX, int targetY)
 					printLevel();
 					cout << "\nYOU DIED!\n";
 					system("PAUSE");
-					return;
+					exit(0);
 				}
 			}
 			else
@@ -177,7 +180,7 @@ void Level::movePlayer(char tile, int x, int y, Player & player)
 	case '#': // Wall
 		break;
 	default: // Enemy
-		battleEnemy(player, pX, pY);
+		battleEnemy(player, x, y);
 		break;
 	}
 }
