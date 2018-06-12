@@ -34,6 +34,19 @@ int Player::getPlayerAttack()
 	return _attack;
 }
 
+void Player::addExp(int exp)
+{
+	_experience += exp;
+	while (_experience > 50)
+	{
+		_experience -= 50;
+		_attack += 10;
+		_health += 10;
+		_defence += 20;
+		_level++;
+	}
+}
+
 
 Player::~Player()
 {

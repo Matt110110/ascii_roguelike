@@ -15,6 +15,7 @@ public:
 	void getPositionOfEnemy(int & x, int & y);
 	void setPositionOfEnemy(int x, int y);
 	int getEnemyAttack();
+	int takeDamage(int attack);
 	~Enemy();
 };
 

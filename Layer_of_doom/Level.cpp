@@ -107,7 +107,7 @@ void Level::tryMovePlayer(char dir, Player & player)
 
 void Level::battleEnemy(Player & player, int targetX, int targetY)
 {
-	int enemyX, enemyY, attackRoll;
+	int enemyX, enemyY, attackRoll, attackresult;
 	for (int i = 0; i < _enemies.size(); i++)
 	{
 		_enemies[i].getPositionOfEnemy(enemyX, enemyY);
@@ -115,6 +115,11 @@ void Level::battleEnemy(Player & player, int targetX, int targetY)
 		{
 			// Let the battle begin
 			attackRoll = player.getPlayerAttack();
+			attackresult = _enemies[i].takeDamage(attackRoll);
+			if (attackresult != 0)
+			{
+				player.addExp(attackresult);
+			}
 			return;
 		}
 	}

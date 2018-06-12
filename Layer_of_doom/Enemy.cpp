@@ -35,6 +35,17 @@ int Enemy::getEnemyAttack()
 	return attack(randomEngine);
 }
 
+int Enemy::takeDamage(int attack)
+{
+	attack -= _defence;
+	_hp -= attack;
+	if (_hp > 0)
+	{
+		return 0;
+	}
+	return _expVal;
+}
+
 
 Enemy::~Enemy()
 {
