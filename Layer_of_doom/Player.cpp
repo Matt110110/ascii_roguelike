@@ -1,4 +1,6 @@
 #include "Player.h"
+#include <stdio.h>
+#include <iostream>
 
 using namespace std;
 
@@ -39,12 +41,18 @@ void Player::addExp(int exp)
 	_experience += exp;
 	while (_experience > 50)
 	{
+		printf("Leveled up!\n");
 		_experience -= 50;
 		_attack += 10;
 		_health += 10;
 		_defence += 20;
 		_level++;
+		system("PAUSE");
 	}
+}
+
+void Player::takeDamage(int attack)
+{
 }
 
 

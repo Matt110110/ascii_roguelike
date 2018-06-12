@@ -15,6 +15,7 @@ public:
 	void getPosition(int &x, int &y);
 	int getPlayerAttack();
 	void addExp(int exp);
+	void takeDamage(int attack);
 	~Player();
 };
 

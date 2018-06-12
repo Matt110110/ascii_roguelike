@@ -5,6 +5,11 @@
 
 using namespace std;
 
+void Enemy::_regenerateDefence(int defence)
+{
+	_defence = (int)(defence - ((20 / 100)*defence));
+}
+
 Enemy::Enemy(string name, char tile, int attack, int defence, int hp, int expVal, int level)
 {
 	_name = name;
@@ -37,7 +42,18 @@ int Enemy::getEnemyAttack()
 
 int Enemy::takeDamage(int attack)
 {
+	int originalDef = _defence;
+	int temp = attack;
 	attack -= _defence;
+	if (attack <= 0)
+	{
+		_defence -= temp;
+		return 0;
+	}
+	if (_defence <= 0)
+	{
+		_regenerateDefence(originalDef);
+	}
 	_hp -= attack;
 	if (_hp > 0)
 	{

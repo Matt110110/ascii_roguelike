@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 
+using namespace std;
 
 Level::Level()
 {
@@ -113,12 +114,30 @@ void Level::battleEnemy(Player & player, int targetX, int targetY)
 		_enemies[i].getPositionOfEnemy(enemyX, enemyY);
 		if (targetX == enemyX && targetY == enemyY)
 		{
+			cout << endl << "Player attacked the enemy!" << endl;
 			// Let the battle begin
 			attackRoll = player.getPlayerAttack();
 			attackresult = _enemies[i].takeDamage(attackRoll);
 			if (attackresult != 0)
 			{
+				cout << endl << "Player killed the enemy!" << endl;
+				system("PAUSE");
 				player.addExp(attackresult);
+				setTile(targetX, targetY, '.');
+				return;
+			}
+			
+			// Enemy will fight
+			player.getPosition(targetX, targetY);
+			_enemies[i].getPositionOfEnemy(enemyX, enemyY);
+			if (enemyX == targetX && enemyY == targetY)
+			{
+				attackRoll = _enemies[i].getEnemyAttack();
+
+			}
+			else
+			{
+				cout << endl << "Successfully dodged.\n";
 			}
 			return;
 		}
